@@ -12,7 +12,8 @@ This React application is a small clothing e-commerce storefront built for a tec
 - React Router for navigation
 - Styled Components + basic CSS for UI styling
 - Local storage persistence for search and filter state
-- Loading and error handling
+- Loading skeletons and error handling
+- Light/dark theme toggle using React Context
 
 ## Tech Stack
 
@@ -23,58 +24,83 @@ This React application is a small clothing e-commerce storefront built for a tec
 - Styled Components
 - Vite
 
-## Setup
+## Recommended Setup
 
-### 1. Install dependencies
-
-Open a terminal in `e:\wamp64\www\saravanafrontend` and run:
-
+### 1. Create the Vite app
 ```cmd
-npm.cmd install
+npm create vite@latest mini-ecommerce -- --template react
 ```
 
-### 2. Start the development server
-
-Run:
-
+### 2. Enter the project folder
 ```cmd
-npm.cmd run dev
+cd mini-ecommerce
 ```
 
-### 3. Open the app
-
-Open the local URL shown by Vite, for example:
-
-```text
-http://localhost:4174/
-```
-
-### 4. Build for production
-
-To verify the app compiles:
-
+### 3. Install required libraries
 ```cmd
-npm.cmd run build
+npm install react-router-dom @reduxjs/toolkit react-redux styled-components
 ```
 
-### 5. PowerShell note
-
-If PowerShell blocks `npm` script execution, use `npm.cmd` instead of `npm`.
-If you want to allow scripts temporarily, run:
-
-```powershell
-Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Bypass
-```
-
-Then start the dev server again:
-
-```powershell
+### 4. Start the development server
+```cmd
 npm run dev
 ```
 
-## Complete Command Sequence
+If PowerShell blocks script execution, use `npm.cmd` instead of `npm`.
 
-Execute these commands in order to get the app running:
+### 5. Optional: Build for production
+```cmd
+npm run build
+```
+
+### 6. Optional: Preview production build
+```cmd
+npm run preview
+```
+
+## Actual Project Commands
+
+If you are working in this repository already, use:
+```cmd
+cd e:\wamp64\www\saravanafrontend
+npm.cmd install
+npm.cmd run dev
+```
+
+## Suggested Folder Structure
+
+```text
+src/
+  app/store.js
+  features/products/productsSlice.js
+  context/FilterContext.jsx
+  components/
+    ProductCard.jsx
+    SearchBar.jsx
+    FilterBar.jsx
+    SkeletonCard.jsx
+  pages/
+    ProductList.jsx
+    ProductDetails.jsx
+  styles/
+    global.css
+  App.jsx
+  main.jsx
+```
+
+## API Endpoints
+
+The app uses DummyJSON product endpoints.
+
+```javascript
+const BASE_URL = 'https://dummyjson.com';
+
+GET /products?limit=100
+GET /products/:id
+GET /products/category-list
+```
+
+## Setup for This Repository
 
 ### Step 1: Navigate to the project directory
 ```cmd
@@ -86,21 +112,14 @@ cd e:\wamp64\www\saravanafrontend
 npm.cmd install
 ```
 
-**What this does:** Downloads and installs React, Redux, React Router, Styled Components, Vite, and all other dependencies from npm registry. Creates `node_modules/` folder.
-
 ### Step 3: Start the development server
 ```cmd
 npm.cmd run dev
 ```
 
-**What this does:** Launches Vite dev server with hot module replacement (HMR). Watch for output like:
-```
-  ➜  Local:   http://localhost:4174/
-```
-
 ### Step 4: Open in browser
-Copy the local URL from terminal output and open it in your browser, for example:
-```
+Open the URL shown by Vite, for example:
+```text
 http://localhost:4174/
 ```
 
@@ -109,14 +128,10 @@ http://localhost:4174/
 npm.cmd run build
 ```
 
-**What this does:** Creates optimized production-ready files in the `dist/` folder. Output shows bundle sizes.
-
 ### Optional: Preview production build locally
 ```cmd
 npm.cmd run preview
 ```
-
-**What this does:** Serves the production build on a local server to test before deployment.
 
 ## Troubleshooting
 
